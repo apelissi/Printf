@@ -1,6 +1,6 @@
 #include "ft_printf.h"
 
-int	afficher_int(int nb, char c)
+int	afficher_int(int nb, char c, struct specif S)
 {
 	unsigned char R;
 

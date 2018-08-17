@@ -1,6 +1,6 @@
 #include "ft_printf.h"
 
-int	afficher_unsigned(unsigned int nb, char c)
+int	afficher_unsigned(unsigned int nb, char c, struct specif S)
 {
 	int base;
 

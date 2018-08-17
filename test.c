@@ -6,8 +6,9 @@ int main()
 	int i;
 
 	i = 450;
-	printf("%d", i);
-	ft_printf("%d", i);
-
+	printf("->(%s)\n", "ueiuefhuieziyh");
+	write(1, "\t---\n->[", 9);
+	ft_printf("ooo\\ooo\\po");
+	write(1, "]\n", 3);
 	return(0);
 }

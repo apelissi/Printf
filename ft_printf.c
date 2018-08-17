@@ -24,14 +24,21 @@ int	identifieur(char c)
 
 }
 
-char	identification(const char *str)
+int	taille(const char *str)
 {
-	int i;
+	int i; 
 
 	i = 0;
-	while (str[i] || !(identifieur(str[i])))
+	while (str[i] && !(identifieur(str[i])))
 		i++;
-	return ((char)str[i]);
+	return (i + 2);
+}
+
+char	identification(const char *str)
+{
+	while (*str && !(identifieur(*str)))
+		str++;
+	return ((char)*str);
 }
 
 int	ft_printf(const char *format,...)
@@ -54,22 +61,22 @@ int	ft_printf(const char *format,...)
 		}
 		else
 		{
-			c = identification(&format[i]);
+			c = identification(&format[i + 1]);
 			if (c == 'd' || c == 'D' || c == 'c' || c == 'i')
-				afficher_int(va_arg(ap, int), c);
-			else if (c == 'o' || c == 'O' || c == 'u' || c == 'U'
-			|| c == 'x' || c == 'X')
-				afficher_unsigned(va_arg(ap, unsigned int), c);
+				tot += afficher_int(va_arg(ap, int), c, flags(&format[i + 1]));
+			else if (c == 'o' || c == 'O' || c == 'u' || c == 'U' || c == 'x' || c == 'X')
+			tot += afficher_unsigned(va_arg(ap, unsigned int), c, flags(&format[i + 1]));
 			else if (c == 's')
-				afficher_constchar(va_arg(ap, const char *));
+				tot += afficher_constchar(va_arg(ap, const char *), flags(&format[i + 1]));
 		//	else if (c == 'S')
 		//		afficher_constwchar_t(va_arg(ap, const wchar_t));
 			else if (c == 'p')
-				afficher_ptr(va_arg(ap, void *));
+				tot += afficher_ptr(va_arg(ap, void *), flags(&format[i + 1]));
 		//	else if (c == 'C')
 		//		afficher_wint_t(va_arg(ap, wint_t));
 			else if (c == '%')
-				write(1, "%", 1);
+				tot += write(1, "%", 1);
+			i += taille(&format[i + 1]);
 		}
 	}
 	va_end(ap);

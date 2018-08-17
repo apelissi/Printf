@@ -1,6 +1,6 @@
 #include "ft_printf.h"
 
-int	afficher_constchar(const char *str)
+int	afficher_constchar(const char *str, struct specif S)
 {
 	int i;
 

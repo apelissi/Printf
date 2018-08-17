@@ -1,6 +1,6 @@
 #include "ft_printf.h"
 
-int	afficher_ptr(void *p)
+int	afficher_ptr(void *p, struct specif S)
 {
 	unsigned char t[sizeof p];
 	int i;
