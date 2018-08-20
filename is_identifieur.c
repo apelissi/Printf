@@ -1,32 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   afficher_int.c                                     :+:      :+:    :+:   */
+/*   is_identifieur.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: apelissi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/08/20 13:22:00 by apelissi          #+#    #+#             */
-/*   Updated: 2018/08/20 16:11:38 by apelissi         ###   ########.fr       */
+/*   Created: 2018/08/20 14:22:07 by apelissi          #+#    #+#             */
+/*   Updated: 2018/08/20 14:24:25 by apelissi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
-
-int	afficher_int(int nb, char c, t_specif s)
+int	is_identifieur(char c)
 {
-	unsigned char r;
-
-	if (s.flags < 0)
-		error();
-	if (c == 'c')
-	{
-		r = (unsigned char)nb;
-		write(1, &r, 1);
+	if (c == 's' || c == 'S'|| c == 'p' || c == 'd' || c == 'D' || c == 'i'
+		|| c == 'o' || c == 'O' || c == 'u' || c == 'U' || c == 'x' || c == 'X'
+		|| c == 'c' || c == 'C' || c == '%')
 		return (1);
-	}
 	else
-	{
-		afficher_nb(nb, 10, 'a');
-		return (taille_nb(nb, 10));
-	}
+		return (0);
 }
