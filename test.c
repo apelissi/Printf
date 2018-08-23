@@ -6,7 +6,7 @@
 /*   By: apelissi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/20 13:11:45 by apelissi          #+#    #+#             */
-/*   Updated: 2018/08/20 16:39:16 by apelissi         ###   ########.fr       */
+/*   Updated: 2018/08/23 16:42:58 by apelissi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,23 +25,46 @@ int	main(void)
 	ft_printf("ooo\\ooo\\po");
 	write(1, "]\n", 3);
 */
-	t_specif s;
+/*	t_specif s;
 
 	s = check_spe("#.458d");
-	printf("flags = %d\nfield = %d\npreci = %d\n", s.flags, s.field, s.preci);
+	printf("flags = %d\nfield = %d\npreci = %d\n", s.flags, s.field, s.preci);*/
 
-/*	int i;
+	int i;
 
-	i = 53;
+	i = 25;
 
-	printf("d -> -[%20d]-\n", i);
-	printf("D -> -[%20D]-\n", i);
-	printf("c -> -[%20c]-\n", i);
-	printf("i -> -[%+.3i]-\n", i);	*/
+	printf("-> -[%d]-\n", i);
+	ft_printf("-> -[%d]-\n\n", i);
+
+	printf("-> -[%+20d]-\n", i);
+	ft_printf("-> -[%+20d]-\n\n", i);
+
+	printf("-> -[%-20d]-\n", i);
+	ft_printf("-> -[%-20d]-\n\n", i);
+
+	printf("-> -[%020d]-\n", i);
+	ft_printf("-> -[%020d]-\n\n", i);
+
+	printf("-> -[%0-20.5d]-\n", i);
+	ft_printf("-> -[%0-20.5d]-\n\n", i);
+
+	printf("-> -[%20.5d]-\n", i);
+	ft_printf("-> -[%20.5d]-\n\n", i);
+
+	printf("-> -[% 20d]-\n", i);
+	ft_printf("-> -[% 20d]-\n\n", i);
+
+	printf("-> -[%+20d]-\n", i);
+	ft_printf("-> -[%+20d]-\n\n", i);
+
+	printf("-> -[%0+20.5d]-\n", i);
+	ft_printf("-> -[%0+20.5d]-\n\n", i);
+
+	printf("-> -[% .5d]-\n", i);
+	ft_printf("-> -[% .5d]-\n\n", i);
 	return (0);
 }
-
-
 
 
 
