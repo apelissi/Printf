@@ -12,17 +12,7 @@
 
 #include "unistd.h"
 
-int		neg(int nb)
-{
-	if (nb < 0)
-	{
-		write(1, "-", 1);
-		return (-nb);
-	}
-	return (nb);
-}
-
-int		check_zero(int nb)
+int		check_zero(long nb)
 {
 	if (nb == 0)
 	{
@@ -32,12 +22,11 @@ int		check_zero(int nb)
 	return (1);
 }
 
-void	afficher_nb(int nb, int base, char casse)
+void	afficher_nb(long nb, long base, char casse)
 {
-	int		div;
+	long		div;
 	char	c;
 
-	neg(nb);
 	if (check_zero(nb))
 	{
 		div = 1;

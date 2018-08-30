@@ -16,6 +16,7 @@ int	afficher_unsigned(unsigned int nb, char c, t_specif s)
 {
 	int base;
 
+	s.flags = 0;
 	base = 2;
 	if (c == 'x' || c == 'X')
 		base = 16;

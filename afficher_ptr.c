@@ -17,6 +17,7 @@ int	afficher_ptr(void *p, t_specif s)
 	unsigned char	t[sizeof(p)];
 	int				i;
 
+	s.flags = 0;
 	i = sizeof(p) - 3;
 	ft_memcpy(t, &p, sizeof(p));
 	write(1, "0x", 2);

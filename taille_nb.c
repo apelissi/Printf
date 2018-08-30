@@ -16,9 +16,11 @@ int	taille_nb(int nb, int base)
 	int	div;
 
 	taille = 1;
+	if (nb == -2147483648)
+		return (10);
 	if (nb < 0)
 	{
-		taille++;
+	//	taille++;
 		nb = -nb;
 	}
 	div = 1;

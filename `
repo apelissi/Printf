@@ -30,52 +30,39 @@ int	main(void)
 	s = check_spe("#.458d");
 	printf("flags = %d\nfield = %d\npreci = %d\n", s.flags, s.field, s.preci);*/
 
-/*	int i;
-	int a;
-	int b;
+	int i;
 
-	i = 'a';
+	i = 9;
 
-	a = printf("A-> -[%c]-\n", i);
-	b = ft_printf("A-> -[%c]-\n", i);
-	printf("%d VS %d\n\n", a, b);
+	printf("A-> -[%-28d]-\n", i);
+	ft_printf("A-> -[%-28d]-\n\n", i);
 
-	a = printf("B-> -[%-20c]-\n", i);
-	b = ft_printf("B-> -[%-20c]-\n", i);
-	printf("%d VS %d\n\n", a, b);
+	printf("B-> -[%+20d]-\n", i);
+	ft_printf("B-> -[%+20d]-\n\n", i);
 
-	a = printf("C-> -[%.12d]-\n", i);
-	b = ft_printf("C-> -[%.12d]-\n", i);
-	printf("%d VS %d\n\n", a, b);
+	printf("C-> -[% d]-\n", i);
+	ft_printf("C-> -[% d]-\n\n", i);
 
-	a = printf("D-> -[% d]-\n", i);
-	b = ft_printf("D-> -[% d]-\n", i);
-	printf("%d VS %d\n\n", a, b);
+	printf("D-> -[%+020d]-\n", i);
+	ft_printf("D-> -[%+020d]-\n\n", i);
 
-	a = printf("E-> -[%+d]-\n", i);
-	b = ft_printf("E-> -[%+d]-\n", i);
-	printf("%d VS %d\n\n", a, b);
+	printf("E-> -[%020.5d]-\n", i);
+	ft_printf("E-> -[%020.5d]-\n\n", i);
 
-	a = printf("F-> -[%-d]-\n", i);
-	b = ft_printf("F-> -[%-d]-\n", i);
-	printf("%d VS %d\n\n", a, b);
+	printf("F-> -[%20.5d]-\n", i);
+	ft_printf("F-> -[%20.5d]-\n\n", i);
 
-	a = printf("G-> -[% 20d]-\n", i);
-	b = ft_printf("G-> -[% 20d]-\n", i);
-	printf("%d VS %d\n\n", a, b);
+	printf("G-> -[% 20d]-\n", i);
+	ft_printf("G-> -[% 20d]-\n\n", i);
 
-	a = printf("H-> -[%+20d]-\n", i);
-	b = ft_printf("H-> -[%+20d]-\n", i);
-	printf("%d VS %d\n\n", a, b);
+	printf("H-> -[%+20d]-\n", i);
+	ft_printf("H-> -[%+20d]-\n\n", i);
 
-	a = printf("I-> -[%-20.12d]-\n", i);
-	b = ft_printf("I-> -[%-20.12d]-\n", i);
-	printf("%d VS %d\n\n", a, b);
+	printf("I-> -[%0+20.5d]-\n", i);
+	ft_printf("I-> -[%0+20.5d]-\n\n", i);
 
-	printf("J-> -[%020d]-\n", i);
-	ft_printf("J-> -[%020d]-\n", i);
-	printf("%d VS %d\n\n", a, b);*/
-
+	printf("J-> -[% .5d]-\n", i);
+	ft_printf("J-> -[% .5d]-\n\n", i);
 
 /*	long l;
 

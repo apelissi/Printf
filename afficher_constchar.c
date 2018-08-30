@@ -16,6 +16,7 @@ int	afficher_constchar(const char *str, t_specif s)
 {
 	int i;
 
+	s.flags = 0;
 	i = 0;
 	while (str[i])
 	{
