@@ -69,14 +69,12 @@ int		ft_printf(const char *format, ...)
 				tot += afficher_unsigned(va_arg(ap, unsigned int), c, check_spe(&format[i + 1]));
 			else if (c == 's')
 				tot += afficher_constchar(va_arg(ap, const char *), check_spe(&format[i + 1]));
-		//	else if (c == 'S')
-		//		afficher_constwchar_t(va_arg(ap, const wchar_t));
 			else if (c == 'p')
 				tot += afficher_ptr(va_arg(ap, void *), check_spe(&format[i + 1]));
-		//	else if (c == 'C')
-		//		afficher_wint_t(va_arg(ap, wint_t));
+			else if (c == 'C' || c == 'S')
+				tot += 0;
 			else if (c == '%')
-				tot += write(1, "%", 1);
+				tot += afficher_percent(check_spe(&format[i + 1]));
 			i += taille(&format[i + 1]);
 		}
 	}

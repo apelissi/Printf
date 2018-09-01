@@ -32,8 +32,8 @@ t_specif	init(void)
 	t_specif	s;
 
 	s.flags = 1;
-	s.field = 0;
-	s.preci = 0;
+	s.field = -1;
+	s.preci = -1;
 	return (s);
 }
 

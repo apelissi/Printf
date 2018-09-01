@@ -35,5 +35,6 @@ t_specif		check_spe(const char *str);
 int				is_identifieur(char c);
 int				ft_atoi(const char *nptr);
 void			error(void);
+int				afficher_percent(t_specif s);
 
 #	endif
