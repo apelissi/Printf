@@ -6,7 +6,7 @@
 /*   By: apelissi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/20 13:23:16 by apelissi          #+#    #+#             */
-/*   Updated: 2018/08/20 13:23:33 by apelissi         ###   ########.fr       */
+/*   Updated: 2018/09/13 13:53:06 by apelissi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,13 @@ void	ft_const_field(const char *str, t_specif s)
 		t += write(1, " ", 1);
 }
 
-int	afficher_constchar(const char *str, t_specif s)
+int		afficher_constchar(const char *str, t_specif s)
 {
 	int i;
 
 	i = 0;
+	if (!str)
+		return (write(1, "(null)", 6));
 	if (s.flags % 5)
 		ft_const_field(str, s);
 	while (str[i] && (s.preci - i || s.preci < 0))

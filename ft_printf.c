@@ -6,24 +6,11 @@
 /*   By: apelissi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/20 13:03:25 by apelissi          #+#    #+#             */
-/*   Updated: 2018/08/20 16:27:56 by apelissi         ###   ########.fr       */
+/*   Updated: 2018/09/20 21:53:05 by apelissi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "string.h"
-#include "unistd.h"
-#include "stdarg.h"
 #include "ft_printf.h"
-
-size_t	ft_strlen(const char *s)
-{
-	size_t	t;
-
-	t = 0;
-	while (s[t])
-		t++;
-	return (t);
-}
 
 int		taille(const char *str)
 {
@@ -32,7 +19,7 @@ int		taille(const char *str)
 	i = 0;
 	while (str[i] && !(is_identifieur(str[i])))
 		i++;
-	return (i + 2);
+	return (i + 1);
 }
 
 char	identification(const char *str)
@@ -42,6 +29,31 @@ char	identification(const char *str)
 	return ((char)*str);
 }
 
+int		select_type(va_list ap, char c, const char *str)
+{
+	t_specif	s;
+
+	s = check_spe(str, 0);
+	if (c == 'o' || c == 'O' || c == 'u' || c == 'U' || c == 'x' || c == 'X')
+		return (afficher_unsigned(get_uintmax(ap, s), c, s));
+	else if (c == 'd' || c == 'D' || c == 'c' || c == 'i')
+		return (afficher_int(get_intmax(ap, s), c, s));
+	else if (c == 's')
+		return (afficher_constchar(va_arg(ap, const char *), s));
+	else if (c == 'p')
+		return (afficher_ptr(va_arg(ap, void *), s));
+	else if (c == 'S')
+		return (afficher_ws(va_arg(ap, wchar_t *), s));
+	else if (c == 'C')
+		return (0);
+	else if (c == '%')
+		return (afficher_percent(s));
+	else if (c == 'Z')
+		return (write(1, "Z", 1));
+	else
+		return (-1);
+}
+
 int		ft_printf(const char *format, ...)
 {
 	va_list	ap;
@@ -49,32 +61,18 @@ int		ft_printf(const char *format, ...)
 	int		tot;
 	char	c;
 
+	if (format == NULL)
+		return (-1);
 	va_start(ap, format);
-	i = 0;
+	i = -1;
 	tot = 0;
-	while (format[i])
+	while (format[++i])
 	{
 		if (format[i] != '%')
+			tot += write(1, &format[i], 1);
+		else if ((c = identification(&format[i + 1])))
 		{
-			write (1, &format[i], 1);
-			tot++;
-			i++;
-		}
-		else
-		{
-			c = identification(&format[i + 1]);
-			if (c == 'd' || c == 'D' || c == 'c' || c == 'i')
-				tot += afficher_int(va_arg(ap, int), c, check_spe(&format[i + 1]));
-			else if (c == 'o' || c == 'O' || c == 'u' || c == 'U' || c == 'x' || c == 'X')
-				tot += afficher_unsigned(va_arg(ap, unsigned int), c, check_spe(&format[i + 1]));
-			else if (c == 's')
-				tot += afficher_constchar(va_arg(ap, const char *), check_spe(&format[i + 1]));
-			else if (c == 'p')
-				tot += afficher_ptr(va_arg(ap, void *), check_spe(&format[i + 1]));
-			else if (c == 'C' || c == 'S')
-				tot += 0;
-			else if (c == '%')
-				tot += afficher_percent(check_spe(&format[i + 1]));
+			tot += select_type(ap, c, &format[i + 1]);
 			i += taille(&format[i + 1]);
 		}
 	}

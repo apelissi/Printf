@@ -6,7 +6,7 @@
 /*   By: apelissi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/20 13:24:06 by apelissi          #+#    #+#             */
-/*   Updated: 2018/08/20 13:26:14 by apelissi         ###   ########.fr       */
+/*   Updated: 2018/09/17 17:58:15 by apelissi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,13 @@ void	field_ptr(t_specif s)
 		t += write(1, " ", 1);
 }
 
-int	afficher_ptr(void *p, t_specif s)
+int		afficher_ptr(void *p, t_specif s)
 {
 	unsigned char	t[sizeof(p)];
-	int		i;
+	int				i;
 
+	if (p == NULL)
+		return (write(1, "0x0", 3));
 	i = sizeof(p) - 3;
 	ft_memcpy(t, &p, sizeof(p));
 	if (s.flags % 5)

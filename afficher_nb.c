@@ -6,11 +6,11 @@
 /*   By: apelissi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/20 13:12:38 by apelissi          #+#    #+#             */
-/*   Updated: 2018/08/20 14:27:24 by apelissi         ###   ########.fr       */
+/*   Updated: 2018/09/20 18:53:28 by apelissi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "unistd.h"
+#include "ft_printf.h"
 
 int		check_zero(long nb)
 {
@@ -22,10 +22,10 @@ int		check_zero(long nb)
 	return (1);
 }
 
-void	afficher_nb(long nb, long base, char casse)
+void	afficher_nb(intmax_t nb, int base, char casse)
 {
-	long		div;
-	char	c;
+	intmax_t	div;
+	char		c;
 
 	if (check_zero(nb))
 	{

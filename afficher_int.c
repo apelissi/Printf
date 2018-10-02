@@ -6,48 +6,51 @@
 /*   By: apelissi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/20 13:22:00 by apelissi          #+#    #+#             */
-/*   Updated: 2018/08/23 16:43:35 by apelissi         ###   ########.fr       */
+/*   Updated: 2018/09/20 22:23:33 by apelissi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int		ft_signe(int nb, t_specif s)
+int		ft_signe(intmax_t nb, t_specif s)
 {
 	if (nb < 0)
-		return (write (1, "-", 1));
+		return (write(1, "-", 1));
 	else if (!(s.flags % 7))
-		return (write (1, "+", 1));
+		return (write(1, "+", 1));
 	else if (!(s.flags % 11))
-		return (write (1, " ", 1));
+		return (write(1, " ", 1));
 	return (0);
 }
 
-int		number(int nb, t_specif s)
+int		number(intmax_t nb, t_specif s)
 {
 	int	u;
 
 	u = 0;
-	if (nb == -2147483648)
+	if (nb < -9223372036854775807)
 	{
-		while (s.preci - u > 10)
+		while (s.preci - u > 19)
 			u += write(1, "0", 1);
-		write(1, "2147483648", 10);
-		return (10 + u);
+		write(1, "9223372036854775808", 19);
+		return (19 + u);
 	}
 	if (nb < 0)
 		nb = -nb;
 	while (s.preci - u > taille_nb(nb, 10))
 		u += write(1, "0", 1);
-	afficher_nb(nb, 10, 'a');
-	return (taille_nb(nb, 10) + u);
+	if (nb || s.preci)
+		afficher_nb(nb, 10, 'a');
+	else if (s.field > 0)
+		write(1, " ", 1);
+	return (taille_nb(nb, 10));
 }
 
 void	ft_field(int nb, t_specif s)
 {
 	char	c;
-	int	t;
-	int	u;
+	int		t;
+	int		u;
 
 	t = 0;
 	c = ' ';
@@ -80,12 +83,11 @@ int		ft_putchar(int i, t_specif s)
 	return (1);
 }
 
-int		afficher_int(int nb, char c, t_specif s)
+int		afficher_int(intmax_t nb, char c, t_specif s)
 {
 	int	i;
+	int	t_nb;
 
-	if (s.flags < 0)
-		error();
 	if (c == 'c')
 		return (ft_putchar(nb, s));
 	else
@@ -95,13 +97,13 @@ int		afficher_int(int nb, char c, t_specif s)
 		i = ft_signe(nb, s);
 		if (s.flags % 5 && !(s.flags % 3) && (s.preci == -1))
 			ft_field(nb, s);
-		number(nb, s);
+		t_nb = number(nb, s);
 		if (!(s.flags % 5))
 			ft_field(nb, s);
-		if (s.field > taille_nb(nb, 10) && s.field > s.preci)
-			return(s.field);
-		else if (taille_nb(nb, 10)  > s.preci)
-			return (taille_nb(nb, 10) + i);
+		if (s.field > t_nb && s.field > s.preci)
+			return (s.field);
+		else if (t_nb > s.preci && (nb || s.preci))
+			return (t_nb + i);
 		else
 			return (s.preci + i);
 	}
